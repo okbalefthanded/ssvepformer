@@ -122,3 +122,41 @@ class SSVEPFormerTH(nn.Module):
       imag = x.imag[:,:, self.fft_start:self.fft_end]
       x = torch.cat((real, imag), axis=-1)
     return x
+
+
+class FBSSVEPFormer(nn.Module):
+  def __init__(self, fs=256, n_subbands=3, models=None):
+    super().__init__()
+    self.name = "FB-SSVEPFORMER"
+    self.fs = fs
+    self.subbands = [[8*i, 80] for i in range(1, n_subbands+1)]
+    self.subnets  = models
+    self.conv     = nn.Conv1d(n_subbands, 1, 1, padding='same')
+    self.init_weights()
+
+  def init_weights(self):
+    nn.init.normal_(self.conv.weight, mean=0.0, std=0.01)
+    nn.init.constant_(self.conv.bias, 0)
+
+  def forward(self, x):
+    out = []
+    for i, band in enumerate(self.subbands):
+      c = self.filter_band(x, band)
+      c = self.subnets[i](c)
+      c = c.unsqueeze(1)
+      out.append(c)
+    #
+    x = torch.cat(out, 1)
+    x = self.conv(x)
+    return x.squeeze(1)
+
+  def filter_band(self, x, band):
+    # x: batch, channels, samples
+    device = x.device
+    with torch.no_grad():
+      x = x.cpu().numpy()
+      B, A = butter(4, np.array(band) / (self.fs / 2), btype='bandpass')
+      x = filtfilt(B, A, x, axis=-1)
+      x = x.copy()
+    return torch.tensor(x, dtype=torch.float, device=device)
+
