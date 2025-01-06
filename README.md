@@ -20,5 +20,5 @@ We followed the same procedure in the paper in the 1st experiment on the same da
 
 # Usage
 
-feel free to use the code and built upon it, just mention this repo.
+feel free to use the code and build upon it, just mention this repo.
 
