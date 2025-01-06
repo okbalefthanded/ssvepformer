@@ -1,4 +1,4 @@
-# Okba Bekheliif dec 2024, <okba.bekhelifi@univ-usto.dz>
+# Okba Bekhelifi dec 2024, <okba.bekhelifi@univ-usto.dz>
 # Implements SSVEPFormer model from:
 # Chen, J. et al. (2023) ‘A transformer-based deep neural network model for SSVEP classification’, 
 # Neural Networks, 164, pp. 521–534. Available at: https://doi.org/10.1016/j.neunet.2023.04.045.

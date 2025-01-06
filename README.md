@@ -18,3 +18,7 @@ We followed the same procedure in the paper in the 1st experiment on the same da
 [2] Nakanishi, M. et al. (2015) ‘A Comparison Study of Canonical Correlation Analysis Based Methods for Detecting Steady-State Visual Evoked Potentials’, Plos One, 10(10), p. e0140703. Available at: https://doi.org/10.1371/journal.pone.0140703.
 
 
+# Usage
+
+feel free to use the code and built upon it, just mention this repo.
+
