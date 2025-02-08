@@ -10,6 +10,8 @@ We followed the same procedure in the paper in the 1st experiment on the same da
  - Numpy
  - Scipy
 
+# Keras 3
+A Keras 3 version with JAX backend is available (only the SSVEPFormer model) on the [Keras site](keras.io) examples section : [EEG BCI SSVEP Tutorial](https://keras.io/examples/timeseries/eeg_bci_ssvepformer/) 
 
 # References
 
